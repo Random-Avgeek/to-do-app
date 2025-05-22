@@ -1,0 +1,282 @@
+.taskItem {
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle, var(--task-gradient-start), var(--task-gradient-middle), var(--task-gradient-end));
+  background-size: 200% 200%;
+  animation: taskGradientMove 10s ease infinite;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  animation: slideIn 0.3s ease-in-out, taskGradientMove 2.5s ease infinite;
+  border-left: 4px solid transparent;
+}
+@keyframes taskGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.taskItem:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-7px);
+}
+
+.taskMain {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.taskContent {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.taskText {
+  flex: 1;
+  font-size: var(--font-size-base);
+  word-break: break-word;
+  transition: color var(--transition-fast);
+}
+
+.checkboxContainer {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkboxLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  background-color: transparent;
+  border: 2px solid #282323;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.checkbox:checked ~ .checkboxLabel {
+  background-color: var(--color-primary);
+  border-color: #000000;
+}
+
+.checkbox:checked ~ .checkboxLabel:after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 8px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.completed .taskText {
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
+}
+
+.priorityBadge {
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.priorityHigh {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--color-priority-high);
+}
+
+.priorityMedium {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--color-priority-medium);
+}
+
+.priorityLow {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--color-priority-low);
+}
+
+.taskItem.completed {
+  border-left-color: var(--color-secondary);
+  opacity: 0.8;
+}
+
+.taskItem.priorityHigh {
+  border-left-color: var(--color-priority-high);
+}
+
+.taskItem.priorityMedium {
+  border-left-color: var(--color-priority-medium);
+}
+
+.taskItem.priorityLow {
+  border-left-color: var(--color-priority-low);
+}
+
+.taskActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+  margin-left: auto;
+}
+
+.editButton, .deleteButton {
+  padding: 6px 18px;
+  font-size: var(--font-size-small);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.editButton {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.editButton:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.editButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.deleteButton {
+  background-color: var(--color-error);
+  color: white;
+}
+
+.deleteButton:hover {
+  opacity: 0.9;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.editInput {
+  padding: var(--spacing-1);
+  font-size: var(--font-size-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.editInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.editSelect {
+  padding: var(--spacing-1);
+  font-size: var(--font-size-base);
+  border: 1px solid #000000;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.editActions {
+  display: flex;
+  gap: var(--spacing-1);
+  margin-top: var(--spacing-1);
+}
+
+.saveButton, .cancelButton {
+  padding: 4px 12px;
+  font-size: var(--font-size-small);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.saveButton {
+  background-color: var(--color-success);
+  color: white;
+  flex: 1;
+}
+
+.cancelButton {
+  background-color: var(--color-text-secondary);
+  color: white;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .taskItem {
+    flex-direction: row;
+    align-items: center;
+    padding: var(--spacing-2) var(--spacing-3);
+  }
+
+  .editButton, .deleteButton {
+    font-size: var(--font-size-base); /* Increase font size for medium screens */
+  }
+
+  .taskText {
+    font-size: var(--font-size-large); /* Increase task text size */
+  }
+
+  .taskMain {
+    margin-bottom: 0;
+  }
+  
+  .editForm {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .editInput {
+    flex: 2;
+  }
+  
+  .editSelect {
+    flex: 1;
+  }
+  
+  .editActions {
+    margin-top: 0;
+    margin-left: var(--spacing-1);
+  }
+}

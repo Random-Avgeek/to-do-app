@@ -1,0 +1,84 @@
+.header {
+  background: linear-gradient(135deg, var(--header-gradient-start), var(--header-gradient-middle), var(--header-gradient-end));
+  background-size: 400% 400%;
+  animation: headerGradientMove 6s ease infinite;
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-2) 0;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+@keyframes headerGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-2);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+  text-shadow:
+    0 0 8px rgb(166, 144, 229),
+    0 0 16px rgb(135, 137, 241),
+    0 0 32px rgb(124, 124, 209);
+}
+
+[data-theme="dark"] .title {
+  color: rgb(162, 37, 133); /*Title for dark*/
+  text-shadow:
+    0 0 4px rgb(119, 32, 124),
+    0 0 8px rgb(52, 15, 76),
+    0 0 16px rgb(21, 3, 48);
+}
+
+.themeToggle {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  padding: var(--spacing-1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-mid);
+}
+
+.themeToggle:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+@media (min-width: 640px) {
+  .header {
+    padding: var(--spacing-3) 0;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-3);
+  }
+  
+  .title {
+    font-size: 3rem;
+  }
+}
